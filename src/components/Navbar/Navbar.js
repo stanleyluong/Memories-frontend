@@ -15,7 +15,7 @@ const Navbar = () => {
 
     const logout = () => {
         dispatch({ type: 'LOGOUT' })
-        history.push('/')
+        history.push('/Memories')
         setUser(null)
     }
     console.log(user)
@@ -26,7 +26,7 @@ const Navbar = () => {
         if(token){
             const decodedToken = decode(token)
             if(decodedToken.exp * 1000 < new Date().getTime()) logout()
-            
+
         }
 
         setUser(JSON.parse(localStorage.getItem('profile')))
@@ -36,7 +36,7 @@ const Navbar = () => {
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
             <div className={classes.brandContainer}>
-                <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">Memories</Typography>
+                <Typography component={Link} to="/Memories" className={classes.heading} variant="h2" align="center">Memories</Typography>
                 <img className={classes.image} src={memories} alt="icon" height="60" />
             </div>
             <Toolbar className={classes.toolbar} >
@@ -49,7 +49,7 @@ const Navbar = () => {
                         </Button>
                     </div>
                 ) : (
-                    <Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button>
+                    <Button component={Link} to="/Memories/auth" variant="contained" color="primary">Sign In</Button>
                 )}
             </Toolbar>
         </AppBar>
