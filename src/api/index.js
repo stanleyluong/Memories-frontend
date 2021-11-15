@@ -1,6 +1,6 @@
 import axios from 'axios';
-const API = axios.create({ baseURL: 'http://localhost:5000'})
-// const API = axios.create({ baseURL: 'https://stanley-memories.herokuapp.com'})
+// const API = axios.create({ baseURL: 'http://localhost:5000'})
+const API = axios.create({ baseURL: 'https://stanley-memories.herokuapp.com'})
 // const url = 'https://stanley-memories.herokuapp.com/posts';
 // const url = "http://localhost:5000/posts"
 API.interceptors.request.use((req) => {
