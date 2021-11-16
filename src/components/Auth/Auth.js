@@ -48,6 +48,9 @@ const Auth = () => {
             dispatch({ type: 'AUTH', data: { result, token }})
             history.push('/Memories')
         } catch (error) {
+            console.log("couldn't dispatch")
+            console.log('result',result)
+            console.log('token',token)
             console.log(error)
         }
 
