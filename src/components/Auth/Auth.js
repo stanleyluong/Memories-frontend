@@ -39,7 +39,7 @@ const Auth = () => {
         setShowPassword(false)
     }
     const googleSuccess = async (res) => {
-        // console.log(res)
+        console.log('success response',res)
         //optional chaining operator
         const result = res?.profileObj
         const token = res?.tokenId
@@ -52,8 +52,8 @@ const Auth = () => {
         }
 
     }
-    const googleFailure = () => {
-        // console.log(error)
+    const googleFailure = async (res) => {
+        console.log('failure response',res)
         console.log("Google Sign In was unsuccessful. Try again later")
     }
     return (
