@@ -81,7 +81,7 @@ const Auth = () => {
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                         { isSignup ? 'Sign Up' : 'Sign In' }
                     </Button>
-                    {/* <GoogleLogin 
+                    <GoogleLogin 
                         clientId="293664759215-mq85kir3of6mrqcq7a3ejislc205uru7.apps.googleusercontent.com"
                         render={(renderProps)=> (
                             <Button
@@ -99,7 +99,7 @@ const Auth = () => {
                         onSuccess={googleSuccess}
                         onFailure={googleFailure}
                         cookiePolicy="single_host_origin"
-                    /> */}
+                    />
                     <Grid container justifyContent="flex-end">
                         <Grid item>
                             <Button onClick={switchMode}>
