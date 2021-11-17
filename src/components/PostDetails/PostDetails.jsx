@@ -5,9 +5,9 @@ import moment from 'moment'
 import { useParams, useHistory } from 'react-router-dom'
 import useStyles from './styles'
 import { getPost, getPostsBySearch } from '../../actions/posts'
+import CommentSection from './CommentSection'
 
 const PostDetails = () => {
-    console.log('loading post details')
     const { post, posts, isLoading } = useSelector((state) => state.posts)
     const dispatch = useDispatch()
     const history = useHistory()
@@ -15,7 +15,6 @@ const PostDetails = () => {
     const { id } = useParams()
 
     useEffect(() => {
-        console.log('getPost',id)
         dispatch(getPost(id))
     }, [id])
 
@@ -24,7 +23,6 @@ const PostDetails = () => {
             dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }))
         }
     }, [post])
-    console.log('posts above recc', posts)
     
     if(!post) return null
     
@@ -49,7 +47,8 @@ const PostDetails = () => {
                     <Divider style={{ margin: '20px 0' }} />
                     <Typography variant="body1"><strong>Realtime Chat - coming soon</strong></Typography>
                     <Divider style={{ margin: '20px 0' }} />
-                    <Typography variant="body1"><strong>comments - coming soon</strong></Typography>
+                    {/* <Typography variant="body1"><strong>comments - coming soon</strong></Typography> */}
+                    <CommentSection post={post} />
                     <Divider style={{ margin: '20px 0' }} />
                 </div>
                 <div className={classes.imageSection}>

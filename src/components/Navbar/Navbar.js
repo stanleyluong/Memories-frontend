@@ -19,7 +19,6 @@ const Navbar = () => {
         history.push('/Memories')
         setUser(null)
     }
-    console.log(user)
 
     useEffect(()=>{
         const token = user?.token

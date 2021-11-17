@@ -23,7 +23,6 @@ const Auth = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        // console.log(formData)
         if(isSignup) {
             dispatch(signup(formData, history))
         } else {
@@ -39,7 +38,6 @@ const Auth = () => {
         setShowPassword(false)
     }
     const googleSuccess = async (res) => {
-        console.log('success response',res)
         //optional chaining operator
         const result = res?.profileObj
         const token = res?.tokenId
@@ -48,9 +46,6 @@ const Auth = () => {
             dispatch({ type: 'AUTH', data: { result, token }})
             history.push('/Memories')
         } catch (error) {
-            console.log("couldn't dispatch")
-            console.log('result',result)
-            console.log('token',token)
             console.log(error)
         }
 

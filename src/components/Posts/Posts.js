@@ -24,4 +24,4 @@ const Posts = ({ setCurrentId }) => {
     )
 }
 
-export default Posts;
+export default Posts
