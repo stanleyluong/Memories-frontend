@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { AppBar, Avatar, Toolbar, Typography, Button } from '@material-ui/core'
 import useStyles from './styles'
@@ -13,12 +13,12 @@ const Navbar = () => {
     const history = useHistory()
     const location = useLocation()
 
-    const logout = () => {
+    const logout = useCallback(() => {
         dispatch({ type: 'LOGOUT' })
         history.push('/')
         setUser(null)
-    }
-    console.log(user)
+    }, [dispatch, history])
+    // console.log(user)
 
     useEffect(()=>{
         const token = user?.token
@@ -31,7 +31,7 @@ const Navbar = () => {
 
         setUser(JSON.parse(localStorage.getItem('profile')))
 
-    }, [location])
+    }, [location, logout, user?.token])
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">
@@ -43,7 +43,7 @@ const Navbar = () => {
                 {user ? (
                     <div className={classes.profile}>
                         <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl} >{user.result.name}</Avatar>
-                        <Typography className={classes.userName} variant="h6">{user.result.name}</Typography>
+                        <Typography className={classes.userName} variant="h6">{user.result.email}</Typography>
                         <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>
                             Logout
                         </Button>

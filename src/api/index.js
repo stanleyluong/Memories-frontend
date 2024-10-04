@@ -1,6 +1,30 @@
 import axios from 'axios';
-// const API = axios.create({ baseURL: 'http://localhost:5000'})
-const API = axios.create({ baseURL: 'https://stanley-memories.herokuapp.com'})
+const token = localStorage.getItem('token');
+
+// const API = axios.create({ baseURL: 'http://localhost:5001' });
+const API = axios.create({
+    baseURL: 'http://localhost:5001',
+    headers: {
+        'Authorization': `Bearer ${token}`
+    }
+});
+// const API = axios.create({
+//     baseURL: process.env.REACT_APP_API_URL || 
+//       (process.env.NODE_ENV === 'production' 
+//         ? 'https://stanley-memories.herokuapp.com' 
+//         : 'http://localhost:5001')
+//   });
+  
+// const API = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
+// const API = axios.create({ 
+//     baseURL: process.env.NODE_ENV === 'production' 
+//       ? 'https://stanley-memories.herokuapp.com' 
+//       : 'http://localhost:5001' 
+//   });
+  
+// const API = axios.create({ baseURL: 'http://localhost:5001'})
+// const API = axios.create({ baseURL: 'https://stanley-memories.herokuapp.com'})
 // const url = 'https://stanley-memories.herokuapp.com/posts';
 // const url = "http://localhost:5000/posts"
 API.interceptors.request.use((req) => {

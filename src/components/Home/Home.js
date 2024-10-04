@@ -11,6 +11,7 @@ const Home = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        console.log('in useeffect')
         dispatch(getPosts());
     }, [currentId, dispatch])
 
