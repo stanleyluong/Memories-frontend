@@ -1,43 +1,25 @@
 import axios from 'axios';
-const token = localStorage.getItem('token');
 
-// const API = axios.create({ baseURL: 'http://localhost:5001' });
+// Dynamically set the baseURL based on environment
 const API = axios.create({
-    baseURL: 'http://localhost:5001',
-    headers: {
-        'Authorization': `Bearer ${token}`
-    }
+    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5001'
 });
-// const API = axios.create({
-//     baseURL: process.env.REACT_APP_API_URL || 
-//       (process.env.NODE_ENV === 'production' 
-//         ? 'https://stanley-memories.herokuapp.com' 
-//         : 'http://localhost:5001')
-//   });
-  
-// const API = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
-// const API = axios.create({ 
-//     baseURL: process.env.NODE_ENV === 'production' 
-//       ? 'https://stanley-memories.herokuapp.com' 
-//       : 'http://localhost:5001' 
-//   });
-  
-// const API = axios.create({ baseURL: 'http://localhost:5001'})
-// const API = axios.create({ baseURL: 'https://stanley-memories.herokuapp.com'})
-// const url = 'https://stanley-memories.herokuapp.com/posts';
-// const url = "http://localhost:5000/posts"
+// Interceptor to automatically attach the token to every request
 API.interceptors.request.use((req) => {
-    if(localStorage.getItem('profile')) {
-        req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`
+    const profile = localStorage.getItem('profile');
+    if (profile) {
+        req.headers.Authorization = `Bearer ${JSON.parse(profile).token}`;
     }
-    return req
-})
+    return req;
+});
+
+// API requests
 export const fetchPosts = () => API.get('/posts'); 
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
 export const deletePost = (id) => API.delete(`/posts/${id}`);
-export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
+export const likePost = (id) => API.patch(`/posts/${id}/likePost`);  // Fixed the quote and parentheses here
 
-export const signIn = (formData) => API.post('/user/signin', formData)
-export const signUp= (formData) => API.post('/user/signup', formData)
+export const signIn = (formData) => API.post('/user/signin', formData);
+export const signUp = (formData) => API.post('/user/signup', formData);
